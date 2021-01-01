@@ -13,7 +13,7 @@ router.get('/get_data_by_room_code', async (req,res) =>{
     res.send(response);
 })
 
-router.get('/get_data_by_sensor_code',(req,res) =>{
+router.get('/get_data_by_sensor_code', async (req,res) =>{
     const response = await data_service.get_data_by_sensor_code();
     res.send(response);
 })
