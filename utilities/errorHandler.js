@@ -1,4 +1,4 @@
-const getError = (e, code, file, Function) =>{
+const GetError = (e, code, file, Function) =>{
     errors = {
         400: {
             message: 'Bad Request',
@@ -63,4 +63,14 @@ const getError = (e, code, file, Function) =>{
     }
 }
 
-module.exports = getError;
+const GenerateReturnError = (e) =>{
+    return {
+        code: e.code,
+        message: e.message
+    };
+}
+
+module.exports = {
+    getError:GetError,
+    generateReturnError: GenerateReturnError
+};

@@ -1,12 +1,11 @@
-const customError = require('../utilities/errorHandler');
+const {getError, generateReturnError} = require('../utilities/errorHandler');
 const fileName = 'data_service';
 
 const Get_data_by_building_code = () =>{
     try{
         return 'showing data by building code'
     }catch(e){
-        const err = new customError(e, e.code, fileName, 'get_data_by_building_code'); 
-        return err;
+        return getError(e, e.code, fileName, 'get_data_by_building_code');
     }
 }
 
@@ -14,8 +13,7 @@ const Get_data_by_room_code = () =>{
     try{
         return 'showing data by room code'
     }catch(e){
-        const err = new customError(e, e.code, fileName, 'get_data_by_room_code'); 
-        return err;
+        returngetError(e, e.code, fileName, 'get_data_by_room_code'); 
     }
 }
 
@@ -23,8 +21,7 @@ const Get_data_by_sensor_code = () =>{
     try{
         return 'showing data by sensor code'
     }catch(e){
-        const err = new customError(e, e.code, fileName, 'get_data_by_sensor_code'); 
-        return err;
+        return getError(e, e.code, fileName, 'get_data_by_sensor_code'); 
     }
 }
 
