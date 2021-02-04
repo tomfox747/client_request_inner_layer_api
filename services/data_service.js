@@ -13,7 +13,7 @@ const Get_data_by_room_code = () =>{
     try{
         return 'showing data by room code'
     }catch(e){
-        returngetError(e, e.code, fileName, 'get_data_by_room_code'); 
+        return getError(e, e.code, fileName, 'get_data_by_room_code'); 
     }
 }
 
