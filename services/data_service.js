@@ -1,32 +1,50 @@
+const buildingModel = require('../models/building')
+const roomModel = require('../models/room')
+const sensorModel = require('../models/sensor')
 const {getError, generateReturnError} = require('../utilities/errorHandler');
 const fileName = 'data_service';
 
-const Get_data_by_building_code = () =>{
+const Get_building_info_by_building_id = async (buildingId) =>{
     try{
-        return 'showing data by building code'
+        let result = await buildingModel.findOne({Id: buildingId}).lean().exec();
+        return result;
     }catch(e){
-        return getError(e, e.code, fileName, 'get_data_by_building_code');
+        return getError(e, e.code, fileName, 'get_building_info_by_building_id');
     }
 }
 
-const Get_data_by_room_code = () =>{
+const Get_rooms_by_building_id = async (buildingId) =>{
     try{
-        return 'showing data by room code'
+        let rooms = await roomModel.find({Building:buildingId}).lean().exec();
+        return rooms
     }catch(e){
-        return getError(e, e.code, fileName, 'get_data_by_room_code'); 
+        return getError(e, e.code, fileName, 'get_rooms_by_building_id'); 
     }
 }
 
-const Get_data_by_sensor_code = () =>{
+const Get_sensors_by_building_id = async (buildingId) =>{
     try{
-        return 'showing data by sensor code'
+        let sensors = await sensorModel.find({Building:buildingId}).lean().exec();
+        return sensors
     }catch(e){
-        return getError(e, e.code, fileName, 'get_data_by_sensor_code'); 
+        return getError(e, e.code, fileName, 'get_sensors_by_building_id'); 
+    }
+}
+
+const Get_room = async (buildingId, roomId) =>{
+    try{
+        console.log(buildingId)
+        console.log(roomId)
+        let room = await roomModel.findOne({Building:buildingId, RoomId:roomId}).lean().exec();
+        return room
+    }catch(e){
+        return getError(e,e.code,fileName,'get_room')
     }
 }
 
 module.exports = {
-    get_data_by_building_code : Get_data_by_building_code,
-    get_data_by_room_code : Get_data_by_room_code,
-    get_data_by_sensor_code : Get_data_by_sensor_code
+    Get_building_info_by_building_id,
+    Get_rooms_by_building_id,
+    Get_sensors_by_building_id,
+    Get_room
 }
