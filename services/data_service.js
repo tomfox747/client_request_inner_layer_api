@@ -31,10 +31,17 @@ const Get_sensors_by_building_id = async (buildingId) =>{
     }
 }
 
+const Get_sensors_by_room_id = async (buildingId, roomId) =>{
+    try{
+        let sensors = await sensorModel.find({Building:buildingId, RoomId:roomId}).lean().exec()
+        return sensors
+    }catch(e){
+        return getError(e,e.code, fileName, 'get_sensors_by_room_id')
+    }
+}
+
 const Get_room = async (buildingId, roomId) =>{
     try{
-        console.log(buildingId)
-        console.log(roomId)
         let room = await roomModel.findOne({Building:buildingId, RoomId:roomId}).lean().exec();
         return room
     }catch(e){
@@ -46,5 +53,6 @@ module.exports = {
     Get_building_info_by_building_id,
     Get_rooms_by_building_id,
     Get_sensors_by_building_id,
+    Get_sensors_by_room_id,
     Get_room
 }
