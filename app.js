@@ -4,9 +4,6 @@ const app = express();
 
 const healthcheck = require('./routes/healthcheck.js');
 const data_router = require('./routes/data_router.js');
-const { getError } = require('./utilities/errorHandler');
-
-const dbManager = require('./db/init')
 
 app.use(cors());
 app.use('/healthcheck', healthcheck);
