@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
-const db = require('../db/init')
+const mongoose = require('mongoose');
+const db = require('../db/init-hist');
 const connection = db
 
-const buildingSchema = new mongoose.Schema({
+const buildingHistSchema = new mongoose.Schema({
     Id:{type:String, required:true},
     CountryCode: { type: String, required: true },
     Region: { type: String, required: true },
@@ -11,8 +11,8 @@ const buildingSchema = new mongoose.Schema({
     Rooms: { type: String, required: true  },
     Sensors: { type: String, required: true  },
     CurrentPopulation: { type: String, required: true  },
-}, { collection: 'buildings' });
+}, { collection: 'buildingdata' });
 
-const buildingModel = connection.model('buildings', buildingSchema);
+const buildingHistModel = connection.model('bulidingdata', buildingHistSchema);
 
-module.exports = buildingModel;
+module.exports = buildingHistModel;
